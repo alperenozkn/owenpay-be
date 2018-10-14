@@ -1,0 +1,54 @@
+swagger: "2.0"
+info:
+  description: owenpay
+  version: "1.0.0"
+  title: owenpay
+host: owenpay.pentavex.com
+basePath: /owenpay
+schemes:
+- http
+paths:
+  /user/create:
+    post:
+      summary: User Create service.
+      operationId: createUser
+      consumes:
+      -  application/json
+      produces:
+      -  application/json
+      parameters:
+      - in: body
+        name: createUserRequest
+        description: Credentials
+        required: true
+        schema:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: "#/definitions/CreateUserResponse"
+
+definitions:
+  CreateUserRequest:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+    required:
+      - username
+      - password
+
+  CreateUserResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        description: message
