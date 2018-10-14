@@ -32,4 +32,4 @@ projectName.iml
 /build
 /local.properties
 target/
-
+.mvn
