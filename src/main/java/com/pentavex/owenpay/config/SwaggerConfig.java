@@ -14,13 +14,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
     private static final String SWAGGER_API_VERSION = "2.0";
     private static final String LICENSE_TEXT = "License";
-    private static final String title = "owenpay";
-    private static final String description = "owenpay";
+    private static final String TITLE = "owenpay";
+    private static final String DESCRIPTION = "owenpay";
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title(title)
-                .description(description)
+                .title(TITLE)
+                .description(DESCRIPTION)
                 .license(LICENSE_TEXT)
                 .version(SWAGGER_API_VERSION)
                 .build();
