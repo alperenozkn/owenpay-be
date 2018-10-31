@@ -24,15 +24,7 @@ public class UserController implements UserApi {
 
         User newUser = new User(request.getUsername(), request.getPassword());
 
-        System.out.println("Username: " + newUser.getUsername());
-        System.out.println("Password: " + newUser.getPassword());
-
-        User savedUser = userService.saveOrUpdateUserForm(newUser);
-
-        User fetchedUser = userService.getById(savedUser.getId());
-
-        System.out.println("Username: " + fetchedUser.getUsername());
-        System.out.println("Password: " + fetchedUser.getPassword());
+        userService.saveOrUpdateUserForm(newUser);
 
         CreateUserResponse response = new CreateUserResponse();
         response.setMessage(request.getUsername());
