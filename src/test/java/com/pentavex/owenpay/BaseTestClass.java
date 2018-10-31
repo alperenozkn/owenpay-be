@@ -1,5 +1,6 @@
 package com.pentavex.owenpay;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -18,6 +19,9 @@ public class BaseTestClass {
 
     @Autowired
     protected WebApplicationContext webApplicationContext;
+
+    @Autowired
+    protected ObjectMapper objectMapper;
 
     protected MockMvc mockMvc;
     protected MockHttpSession mockHttpSession;
