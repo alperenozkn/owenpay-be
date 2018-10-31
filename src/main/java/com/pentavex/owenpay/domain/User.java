@@ -1,5 +1,6 @@
 package com.pentavex.owenpay.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,16 +14,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
+
+    @Column(unique = true)
+    private String username;
+
+    private String password;
 
     public User() { }
 
-    public User(final String firstName, final String lastName, final String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public User(final String username, final String password) {
+        this.username = username;
+        this.password = password;
     }
 
     // Getter and Setter methods
@@ -35,28 +37,19 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
+    public void setUsername(final String username) {
+        this.username = username;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
+    public void setPassword(final String password) {
+        this.password = password;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
-    }
-
 }

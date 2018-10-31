@@ -22,19 +22,17 @@ public class UserController implements UserApi {
     @Override
     public ResponseEntity<CreateUserResponse> createUser(@Valid @RequestBody final CreateUserRequest request) {
 
-        User newUser = new User("Alperen", "Ozkan", "alperenozkn@gmail.com");
+        User newUser = new User(request.getUsername(), request.getPassword());
 
-        System.out.println("User name      : " + newUser.getFirstName());
-        System.out.println("User last name : " + newUser.getLastName());
-        System.out.println("User e-mail      : " + newUser.getEmail());
+        System.out.println("Username: " + newUser.getUsername());
+        System.out.println("Password: " + newUser.getPassword());
 
         User savedUser = userService.saveOrUpdateUserForm(newUser);
 
         User fetchedUser = userService.getById(savedUser.getId());
 
-        System.out.println("User name      : " + fetchedUser.getFirstName());
-        System.out.println("User last name : " + fetchedUser.getLastName());
-        System.out.println("User e-mail      : " + fetchedUser.getEmail());
+        System.out.println("Username: " + fetchedUser.getUsername());
+        System.out.println("Password: " + fetchedUser.getPassword());
 
         CreateUserResponse response = new CreateUserResponse();
         response.setMessage(request.getUsername());
