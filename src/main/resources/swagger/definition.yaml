@@ -22,12 +22,7 @@ paths:
         description: Credentials
         required: true
         schema:
-          type: object
-          properties:
-            username:
-              type: string
-            password:
-              type: string
+          $ref: "#/definitions/CreateUserRequest"
       responses:
         "200":
           description: Successful operation
