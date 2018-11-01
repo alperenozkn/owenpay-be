@@ -1,6 +1,7 @@
 package com.pentavex.owenpay.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pentavex.owenpay.domain.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,17 +18,17 @@ import java.util.Collections;
 
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
-    public JWTLoginFilter(String url, AuthenticationManager authManager) {
+    public JWTLoginFilter(final String url, final AuthenticationManager authManager) {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authManager);
     }
 
     @Override
     public Authentication attemptAuthentication(
-            HttpServletRequest req, HttpServletResponse res)
+            final HttpServletRequest req, final HttpServletResponse res)
             throws AuthenticationException, IOException, ServletException {
-        AccountCredentials creds = new ObjectMapper()
-                .readValue(req.getInputStream(), AccountCredentials.class);
+        User creds = new ObjectMapper()
+                .readValue(req.getInputStream(), User.class);
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),
@@ -39,9 +40,9 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     protected void successfulAuthentication(
-            HttpServletRequest req,
-            HttpServletResponse res, FilterChain chain,
-            Authentication auth) throws IOException, ServletException {
+            final HttpServletRequest req,
+            final HttpServletResponse res, final FilterChain chain,
+            final Authentication auth) throws IOException, ServletException {
         TokenAuthenticationService
                 .addAuthentication(res, auth.getName());
     }

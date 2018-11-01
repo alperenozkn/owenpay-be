@@ -18,16 +18,20 @@ class TokenAuthenticationService {
     static final String TOKEN_PREFIX = "Bearer";
     static final String HEADER_STRING = "Authorization";
 
-    static void addAuthentication(HttpServletResponse res, String username) {
-        String JWT = Jwts.builder()
+    protected TokenAuthenticationService() {
+        throw new UnsupportedOperationException();
+    }
+
+    static void addAuthentication(final HttpServletResponse res, final String username) {
+        String jWT = Jwts.builder()
                 .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
-        res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
+        res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jWT);
     }
 
-    static Authentication getAuthentication(HttpServletRequest request) {
+    static Authentication getAuthentication(final HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
         if (token != null) {
             // parse the token.
@@ -37,9 +41,11 @@ class TokenAuthenticationService {
                     .getBody()
                     .getSubject();
 
-            return user != null ?
-                    new UsernamePasswordAuthenticationToken(user, null, emptyList()) :
-                    null;
+            if (user != null) {
+                return new UsernamePasswordAuthenticationToken(user, null, emptyList());
+            } else {
+                return null;
+            }
         }
         return null;
     }

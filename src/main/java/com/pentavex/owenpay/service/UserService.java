@@ -8,6 +8,7 @@ public interface UserService {
 
     List<User> listAll();
     User getById(Long id);
+    User loadUserByUsername(String username);
     User saveOrUpdate(User user);
     void delete(Long id);
     User saveOrUpdateUserForm(User user);

@@ -33,10 +33,10 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<GetUserResponse> getUsers(){
+    public ResponseEntity<GetUserResponse> getUsers() {
         GetUserResponse response = new GetUserResponse();
-        response.setUsernames("{\"firstname\":\"Richard\", \"lastname\":\"Feynman\"}," +
-                "{\"firstname\":\"Marie\",\"lastname\":\"Curie\"}");
+        response.setUsernames("{\"firstname\":\"Richard\", \"lastname\":\"Feynman\"},"
+                + "{\"firstname\":\"Marie\",\"lastname\":\"Curie\"}");
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
