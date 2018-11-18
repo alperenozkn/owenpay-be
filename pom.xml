@@ -33,6 +33,7 @@
         <checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
         <postgresql.version>9.4-1206-jdbc42</postgresql.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <h2.version>1.4.197</h2.version>
     </properties>
 
     <dependencies>
@@ -95,6 +96,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- h2 in memory db for tests -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
             <scope>test</scope>
         </dependency>
 

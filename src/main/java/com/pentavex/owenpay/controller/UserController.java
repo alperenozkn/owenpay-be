@@ -24,10 +24,10 @@ public class UserController implements UserApi {
 
         User newUser = new User(request.getUsername(), request.getPassword());
 
-        userService.saveOrUpdateUserForm(newUser);
+        User savedUser = userService.saveOrUpdateUserForm(newUser);
 
         CreateUserResponse response = new CreateUserResponse();
-        response.setMessage(request.getUsername());
+        response.setMessage(savedUser.getUsername());
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
