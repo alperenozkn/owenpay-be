@@ -1,6 +1,6 @@
 package com.pentavex.owenpay.controller;
 
-import com.pentavex.owenpay.service.MyUserDetailsService;
+import com.pentavex.owenpay.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private MyUserDetailsService userDetailsService;
+    private UserService userService;
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
@@ -57,11 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setUserDetailsService(userService);
         authProvider.setPasswordEncoder(encoder());
         return authProvider;
     }
 
+    // TODO: refactor encoder bean
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
