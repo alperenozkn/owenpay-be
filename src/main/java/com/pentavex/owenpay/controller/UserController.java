@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import swaggergen.controller.UserApi;
 import swaggergen.model.CreateUserRequest;
 import swaggergen.model.CreateUserResponse;
+import swaggergen.model.GetUserResponse;
 
 import com.pentavex.owenpay.domain.User;
 import com.pentavex.owenpay.service.UserService;
@@ -28,6 +29,14 @@ public class UserController implements UserApi {
 
         CreateUserResponse response = new CreateUserResponse();
         response.setMessage(savedUser.getUsername());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @Override
+    public ResponseEntity<GetUserResponse> getUsers() {
+        GetUserResponse response = new GetUserResponse();
+        response.setUsernames("{\"firstname\":\"Richard\", \"lastname\":\"Feynman\"},"
+                + "{\"firstname\":\"Marie\",\"lastname\":\"Curie\"}");
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

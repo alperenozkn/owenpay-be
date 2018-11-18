@@ -3,10 +3,11 @@ package com.pentavex.owenpay.service;
 import com.pentavex.owenpay.domain.User;
 import com.pentavex.owenpay.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -24,6 +25,15 @@ public class UserServiceImp implements UserService {
     @Override
     public User getById(final Long id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public User loadUserByUsername(final String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(username);
+        }
+        return user;
     }
 
     @Override

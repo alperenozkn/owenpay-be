@@ -66,6 +66,16 @@
             <artifactId>jaxb-api</artifactId>
             <version>${javax.xml.bind.version}</version>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.4</version>
+		</dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
