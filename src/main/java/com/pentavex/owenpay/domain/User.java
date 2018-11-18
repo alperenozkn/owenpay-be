@@ -1,5 +1,7 @@
 package com.pentavex.owenpay.domain;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +26,7 @@ public class User {
 
     public User(final String username, final String password) {
         this.username = username;
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     // Getter and Setter methods
