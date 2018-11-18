@@ -1,14 +1,14 @@
 package com.pentavex.owenpay.service;
 
+import com.pentavex.owenpay.domain.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import java.util.List;
 
-import com.pentavex.owenpay.domain.User;
-
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     List<User> listAll();
     User getById(Long id);
-    User loadUserByUsername(String username);
     User saveOrUpdate(User user);
     void delete(Long id);
     User saveOrUpdateUserForm(User user);
